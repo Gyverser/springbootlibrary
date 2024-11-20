@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/create_author.css}">
+    <meta charset="UTF-8">
+    <title>Borrow Book</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/borrow}" method="post">
+        <h1>Borrow Book</h1>
+        <br>
+        <select id="dropdown" name="memberId">
+            <option value="" disabled selected>Select a Member</option>
+            <option th:each="member : ${members}"
+                    th:value="${member.id}"
+                    th:text="${member.name}">
+            </option>
+        </select>
+        <br><br>
+
+        <select id="dropdown2" name="bookId">
+            <option value="" disabled selected>Select a Book</option>
+            <option th:each="book : ${books}"
+                    th:value="${book.id}"
+                    th:text="${book.title}">
+
+            </option>
+        </select>
+        <br><br>
+        <button type="submit" class="btn">Borrow</button>
+    </form>
+
+</body>
+</html>

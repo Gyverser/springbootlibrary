@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/create_member.css}">
+    <meta charset="UTF-8">
+    <title>Edit Member</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/members/edit/{id} (id=${member.id})}" th:object="${member}" method="post">
+        <h1>Edit Member</h1>
+        <br>
+        <input type="text" required placeholder="Enter Member Name" th:field="*{name}">
+        <br><br>
+        <input type="text" required placeholder="Enter Membership Number" th:field="*{membershipNumber}">
+        <br><br>
+        <button type="submit" class="btn">Save Member</button>
+
+    </form>
+
+</body>
+</html>
