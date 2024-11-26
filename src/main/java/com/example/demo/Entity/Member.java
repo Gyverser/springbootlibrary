@@ -9,25 +9,25 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="members")
+@Table(name = "members")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private long id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="membership_number")
+    @Column(name = "membership_number")
     private String membershipNumber;
 
     @ManyToMany()
     @JoinTable(
-            name="borrowing",
-            joinColumns = @JoinColumn(name="member_id"),
-            inverseJoinColumns = @JoinColumn(name="book_id")
+            name = "borrowing",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private Set<Book> borrowedBooks = new HashSet<>();
 
@@ -74,12 +74,10 @@ public class Member {
 
     public void addBorrowedBook(Book book) {
         this.borrowedBooks.add(book);
-        book.getMemberList().add(this);
     }
 
     public void removeBorrowedBook(Book book) {
         this.borrowedBooks.remove(book);
-        book.getMemberList().remove(this);
     }
 
     @Override

@@ -6,23 +6,22 @@
     <title>Book Authors</title>
 </head>
 <body>
-
-    <h1>Book Authors</h1>
-    <table>
-        <tr>
-            <td>ID</td>
-            <td>Author Name</td>
-        </tr>
-        <tr th:each="author : ${authors}">
-            <td th:text="${author.id}">1</td>
-            <td>
-                <a th:href="@{/authors/{authorId}/books (authorId=${author.id})}" th:text="${author.name}" class="name">Author Name</a>
-            </td>
-        </tr>
-        <br><br>
-    </table>
+<h1>Book Authors</h1>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Author Name</td>
+    </tr>
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.id}">1</td>
+        <td>
+            <a th:href="@{/authors/{authorId}/books (authorId=${author.id})}" th:text="${author.name}" class="name">Author
+                Name</a>
+        </td>
+    </tr>
     <br><br>
-    <button type="button" class="btn"><a th:href="@{/authors/addAuthor}">Add Author</a></button>
-
+</table>
+<br><br>
+<button type="button" class="btn"><a th:href="@{/authors/add-author}">Add Author</a></button>
 </body>
 </html>

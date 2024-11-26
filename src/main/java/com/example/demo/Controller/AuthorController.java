@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/authors")
 public class AuthorController {
-
     private AuthorService authorService;
     private BookService bookService;
 
@@ -20,12 +19,10 @@ public class AuthorController {
     public AuthorController(AuthorService authorService, BookService bookService) {
         this.authorService = authorService;
         this.bookService = bookService;
-
     }
 
     @GetMapping
     public String getAuthors(Model model) {
-
         model.addAttribute("authors", authorService.getAllAuthors());
         return "books/authors/list";
     }
@@ -37,17 +34,15 @@ public class AuthorController {
         return "books/authors/author-books";
     }
 
-    @GetMapping("/addAuthor")
+    @GetMapping("/add-author")
     public String showAddAuthorForm(Model model) {
         model.addAttribute("author", new Author());
-        return "books/authors/addAuthor";
+        return "books/authors/add-author";
     }
 
-    @PostMapping("/addAuthor")
+    @PostMapping("/add-author")
     public String addAuthor(@ModelAttribute("author") Author author) {
         authorService.saveAuthor(author);
         return "redirect:/authors";
     }
-
-
 }

@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.Entity.Book;
 import com.example.demo.Repository.BookRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ import java.util.List;
 
 @Service
 public class BookService {
-
     private BookRepository bookRepository;
 
     @Autowired
@@ -23,10 +23,9 @@ public class BookService {
     }
 
     public Book getBookById(Long id) {
-        return bookRepository.findById(id).orElse(null);
+        return bookRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Book ID not found: " + id));
     }
 
-    @Transactional
     public Book saveBook(Book book) {
         return bookRepository.save(book);
     }
@@ -38,7 +37,4 @@ public class BookService {
     public List<Book> getBooksByAuthorId(Long authorId) {
         return bookRepository.findBooksByAuthorId(authorId);
     }
-
-
-
 }

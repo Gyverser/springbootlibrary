@@ -16,10 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/books")
 public class BookController {
-
     private BookService bookService;
     private AuthorService authorService;
-
     private MemberService memberService;
 
     @Autowired
@@ -31,7 +29,6 @@ public class BookController {
 
     @GetMapping
     public String getAllBooks(Model model) {
-
         model.addAttribute("books", bookService.getAllBooks());
         model.addAttribute("authors", authorService.getAllAuthors());
         return "books/list";
@@ -75,7 +72,4 @@ public class BookController {
         bookService.deleteBook(id);
         return "redirect:/books";
     }
-
-
-
 }

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 @Controller
 public class BorrowController {
-
     private final MemberService memberService;
     private final BookService bookService;
     private final BorrowService borrowService;
@@ -30,7 +29,6 @@ public class BorrowController {
     public String showBorrowPage(Model model) {
         model.addAttribute("members", memberService.getAllMembers());
         model.addAttribute("books", bookService.getAllBooks());
-
         return "/books/members/borrow";
     }
 
@@ -41,5 +39,4 @@ public class BorrowController {
         borrowService.addBorrowedBook(memberId, bookId);
         return "redirect:/members";
     }
-
 }

@@ -13,9 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/members")
 public class MemberController {
-
     private MemberService memberService;
-
     private BookService bookService;
 
     public MemberController(MemberService memberService, BookService bookService) {
@@ -25,22 +23,19 @@ public class MemberController {
 
     @GetMapping
     public String getMembers(Model model) {
-
         model.addAttribute("members", memberService.getAllMembers());
         return "books/members/list";
     }
 
-    @GetMapping("/addMember")
+    @GetMapping("/add-member")
     public String addNewMember(Model model) {
         model.addAttribute("member", new Member());
-
-        return "books/members/addMember";
+        return "books/members/add-member";
     }
 
-    @PostMapping("/addMember")
+    @PostMapping("/add-member")
     public String saveMember(@ModelAttribute("member") Member member) {
         memberService.saveMember(member);
-
         return "redirect:/members";
     }
 
@@ -61,7 +56,6 @@ public class MemberController {
     public String saveMember(@PathVariable Long id, @ModelAttribute("member") Member member) {
         member.setId(id);
         memberService.saveMember(member);
-
         return "redirect:/members";
     }
 
@@ -70,7 +64,6 @@ public class MemberController {
         Member member = memberService.getMemberById(id);
         model.addAttribute("member", member);
         model.addAttribute("borrowedBooks", member.getBorrowedBooks());
-
         return "books/members/member-books";
     }
 
@@ -80,6 +73,4 @@ public class MemberController {
         model.addAttribute("member", member);
         return "books/members/borrow";
     }
-
-
 }

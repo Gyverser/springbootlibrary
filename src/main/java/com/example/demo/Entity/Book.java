@@ -7,43 +7,43 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="books")
+@Table(name = "books")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private long id;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name="isbn")
+    @Column(name = "isbn")
     private String isbn;
 
-    @Column(name="copies")
+    @Column(name = "copies")
     private int copies;
 
-    @Column(name="author_id", insertable = false, updatable = false)
+    @Column(name = "author_id", insertable = false, updatable = false)
     private Long authorId;
 
     @ManyToOne
-    @JoinColumn(name="author_id")
+    @JoinColumn(name = "author_id")
     private Author author;
 
     @ManyToMany(mappedBy = "borrowedBooks")
-    private Set<Member> memberList = new HashSet<>();
+    private Set<Member> borrowers = new HashSet<>();
 
     public Book() {
 
     }
 
-    public Set<Member> getMemberList() {
-        return memberList;
+    public Set<Member> getBorrowers() {
+        return borrowers;
     }
 
-    public void setMemberList(Set<Member> memberList) {
-        this.memberList = memberList;
+    public void setBorrowers(Set<Member> borrowers) {
+        this.borrowers = borrowers;
     }
 
     public Long getAuthorId() {
@@ -62,11 +62,12 @@ public class Book {
         this.id = id;
     }
 
-    public Book(String title, String isbn, int copies, Long authorId) {
+    public Book(String title, String isbn, int copies) {
         this.title = title;
         this.isbn = isbn;
         this.copies = copies;
     }
+
     public String getTitle() {
         return title;
     }
@@ -97,16 +98,6 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public void addMember(Member member) {
-        this.memberList.add(member);
-        member.getBorrowedBooks().add(this);
-    }
-
-    public void removeMember(Member member) {
-        this.memberList.remove(member);
-        member.getBorrowedBooks().remove(this);
     }
 
     @Override

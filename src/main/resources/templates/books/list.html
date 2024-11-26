@@ -6,9 +6,8 @@
     <title>Library Books</title>
 </head>
 <body>
-
-    <h1>Library Books</h1>
-    <div class="book_table">
+<h1>Library Books</h1>
+<div class="book_table">
     <table>
         <tr>
             <th>ID</th>
@@ -25,14 +24,15 @@
             <td th:text="${book.isbn}">ISBN</td>
             <td th:text="${book.copies}">Copies</td>
             <td>
-                <button class="edit"><a class="manage edit" th:href="@{/books/edit/{id}(id=${book.id})}">Edit</a></button>
-                <button class="delete"><a class="manage delete" th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a></button>
+                <button class="edit"><a class="manage edit" th:href="@{/books/edit/{id}(id=${book.id})}">Edit</a>
+                </button>
+                <button class="delete"><a class="manage delete"
+                                          th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a></button>
             </td>
         </tr>
     </table>
-    </div>
-    <br><br>
-    <button class="btn"><a th:href="@{/books/create}">Add new book</a></button>
-
+</div>
+<br><br>
+<button class="btn"><a th:href="@{/books/create}">Add new book</a></button>
 </body>
 </html>

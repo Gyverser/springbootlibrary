@@ -6,20 +6,18 @@
     <title>Author Books</title>
 </head>
 <body>
-
-        <h1>Books by <span th:text="${author.name}">Author Name</span></h1>
-        <table>
-            <th>Title</th>
-            <th>ISBN</th>
-            <th>Copies</th>
-            <tr th:each="book : ${books}">
-                <td th:text="${book.title}">Book Title</td>
-                <td th:text="${book.isbn}">ISBN Number</td>
-                <td th:text="${book.copies}">Copies</td>
-            </tr>
-        </table>
-        <br><br>
-    <button type="button" class="btn"><a th:href="@{/authors}">Back to Authors</a></button>
-
+<h1>Books by <span th:text="${author.name}">Author Name</span></h1>
+<table>
+    <th>Title</th>
+    <th>ISBN</th>
+    <th>Copies</th>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}">Book Title</td>
+        <td th:text="${book.isbn}">ISBN Number</td>
+        <td th:text="${book.copies}">Copies</td>
+    </tr>
+</table>
+<br><br>
+<button type="button" class="btn"><a th:href="@{/authors}">Back to Authors</a></button>
 </body>
 </html>
