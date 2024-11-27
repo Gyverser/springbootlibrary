@@ -27,13 +27,13 @@ public class MemberController {
         return "books/members/list";
     }
 
-    @GetMapping("/add-member")
+    @GetMapping("/add")
     public String addNewMember(Model model) {
         model.addAttribute("member", new Member());
-        return "books/members/add-member";
+        return "books/members/add";
     }
 
-    @PostMapping("/add-member")
+    @PostMapping("/add")
     public String saveMember(@ModelAttribute("member") Member member) {
         memberService.saveMember(member);
         return "redirect:/members";

@@ -34,13 +34,13 @@ public class AuthorController {
         return "books/authors/author-books";
     }
 
-    @GetMapping("/add-author")
+    @GetMapping("/add")
     public String showAddAuthorForm(Model model) {
         model.addAttribute("author", new Author());
-        return "books/authors/add-author";
+        return "books/authors/add";
     }
 
-    @PostMapping("/add-author")
+    @PostMapping("/add")
     public String addAuthor(@ModelAttribute("author") Author author) {
         authorService.saveAuthor(author);
         return "redirect:/authors";

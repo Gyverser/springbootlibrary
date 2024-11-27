@@ -6,7 +6,7 @@
     <title>Add New Member</title>
 </head>
 <body>
-<form action="#" th:action="@{/members/add-member}" th:object="${member}" method="POST">
+<form action="#" th:action="@{/members/add}" th:object="${member}" method="POST">
     <h1>Add a New Member</h1>
     <br>
     <input type="text" required placeholder="Enter Member Name" th:field="*{name}">

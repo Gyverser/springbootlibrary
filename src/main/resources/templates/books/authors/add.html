@@ -6,7 +6,7 @@
     <title>Add Author</title>
 </head>
 <body>
-<form action="#" th:action="@{/authors/add-author}" th:object="${author}" method="post">
+<form action="#" th:action="@{/authors/add}" th:object="${author}" method="post">
     <h1>Add Author</h1>
     <br>
     <input type="text" th:field="*{name}" placeholder="Enter Author Name">
