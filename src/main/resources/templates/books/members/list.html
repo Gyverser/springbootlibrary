@@ -6,6 +6,8 @@
     <title>Members</title>
 </head>
 <body>
+<div th:replace="books/fragments/header :: header"></div>
+<main>
 <h1>Members</h1>
 <table>
     <tr>
@@ -28,6 +30,7 @@
     </tr>
 </table>
 <br>
-<button type="button" class="btn"><a th:href="@{/members/addMember}">Add New Member</a></button>
+<button type="button" class="btn"><a th:href="@{/members/add}">Add New Member</a></button>
+</main>
 </body>
 </html>

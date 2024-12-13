@@ -1,11 +1,15 @@
 body {
-    height: 100vh;
+    height:100vh;
     margin:0 auto;
-    background-image:url("/images/library.jpg");
+    background-image:url("/images/hd.jpg");
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items: center;
+}
+
+h1 {
+    color:white;
 }
 
 form {
@@ -15,10 +19,31 @@ form {
     justify-content: center;
     align-items:center;
     border: 2px solid black;
-    width:350px;
-    height:500px;
+    width:300px;
+    height:325px;
 }
 
+.signup {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    background-color: #1C1C1C;
+    text-align: center;
+    padding: 8px 12px;
+    width: 272px;
+    border: 2px solid black;
+}
+
+#account {
+    color:white;
+}
+
+.register {
+    padding-left: 4px;
+    padding-right:4px;
+    text-decoration: none;
+}
 
 button {
     border: 2px solid black;
@@ -30,17 +55,10 @@ button {
     background-color: grey;
 }
 
-div.input {
-    padding: 15px 15px;
-    border: 1px solid #CEA80E;
-    margin: 10px 10px;
-
-}
-
 input {
     background-color:grey;
     color: white;
-    height 12px;
+    height:12px;
     width: auto;
     padding: 15px 5px;
     margin: 5px 32px;
@@ -57,21 +75,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-select {
-    background-color:grey;
-    color:white;
-    padding: 10px;
-    font-size: 14px;
-}
-
-option {
-    color:white;
-}
-
-h1 {
-    color:white;
-}
-
 .error {
-    color:red;
+    color: red;
 }

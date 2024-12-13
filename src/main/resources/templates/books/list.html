@@ -6,6 +6,8 @@
     <title>Library Books</title>
 </head>
 <body>
+<div th:replace="books/fragments/header :: header"></div>
+<main>
 <h1>Library Books</h1>
 <div class="book_table">
     <table>
@@ -34,5 +36,6 @@
 </div>
 <br><br>
 <button class="btn"><a th:href="@{/books/create}">Add new book</a></button>
+</main>
 </body>
 </html>

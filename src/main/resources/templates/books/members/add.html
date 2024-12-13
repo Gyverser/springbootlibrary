@@ -6,14 +6,17 @@
     <title>Add New Member</title>
 </head>
 <body>
+<main>
 <form action="#" th:action="@{/members/add}" th:object="${member}" method="POST">
     <h1>Add a New Member</h1>
     <br>
-    <input type="text" required placeholder="Enter Member Name" th:field="*{name}">
-    <br><br>
-    <input type="text" required placeholder="Enter Membership Number" th:field="*{membershipNumber}">
-    <br><br>
+    <input type="text" placeholder="Enter Member Name" th:field="*{name}">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+    <input type="text" placeholder="Enter Membership Number" th:field="*{membershipNumber}">
+    <div th:if="${#fields.hasErrors('membershipNumber')}" th:errors="*{membershipNumber}" class="error"></div>
+    <br>
     <button type="submit">Add Member</button>
 </form>
+</main>
 </body>
 </html>

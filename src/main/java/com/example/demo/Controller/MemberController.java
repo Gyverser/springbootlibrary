@@ -4,8 +4,10 @@ import com.example.demo.Entity.Book;
 import com.example.demo.Entity.Member;
 import com.example.demo.Service.BookService;
 import com.example.demo.Service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +36,10 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String saveMember(@ModelAttribute("member") Member member) {
+    public String saveMember(@Valid @ModelAttribute("member") Member member, BindingResult result) {
+        if (result.hasErrors()) {
+            return "books/members/add";
+        }
         memberService.saveMember(member);
         return "redirect:/members";
     }
@@ -53,7 +58,11 @@ public class MemberController {
     }
 
     @PostMapping("/edit/{id}")
-    public String saveMember(@PathVariable Long id, @ModelAttribute("member") Member member) {
+    public String saveMember(@PathVariable Long id, @Valid @ModelAttribute("member") Member member, BindingResult result) {
+        if(result.hasErrors()) {
+            return "books/members/Edit";
+        }
+
         member.setId(id);
         memberService.saveMember(member);
         return "redirect:/members";

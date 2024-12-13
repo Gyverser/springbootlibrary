@@ -4,9 +4,11 @@ import com.example.demo.Entity.Author;
 import com.example.demo.Repository.AuthorRepository;
 import com.example.demo.Service.AuthorService;
 import com.example.demo.Service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -41,8 +43,19 @@ public class AuthorController {
     }
 
     @PostMapping("/add")
-    public String addAuthor(@ModelAttribute("author") Author author) {
+    public String addAuthor(@Valid @ModelAttribute("author") Author author, BindingResult result) {
+        if(result.hasErrors()) {
+            return "books/authors/add";
+        }
+
         authorService.saveAuthor(author);
+        return "redirect:/authors";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteAuthor(@PathVariable Long id) {
+        Author author = authorService.getAuthorById(id);
+        authorService.deleteAuthor(author.getId());
         return "redirect:/authors";
     }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Header</title>
+    <link rel="stylesheet" th:href="@{/css/header.html}">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/welcome}">Home</a></li>
+            <li><a th:href="@{/borrow}">Borrow</a></li>
+            <li><a th:href="@{/members}">Members</a></li>
+            <li><a th:href="@{/authors}">Authors</a></li>
+            <li><a th:href="@{/books}">Books</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

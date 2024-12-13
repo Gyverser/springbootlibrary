@@ -1,6 +1,12 @@
 package com.example.demo.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.security.core.parameters.P;
 
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +14,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "books")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class Book {
 
     @Id
@@ -16,15 +26,22 @@ public class Book {
     private long id;
 
     @Column(name = "title")
+    @NotBlank(message = "Enter a title")
+    @Size(min = 3, max = 100, message = "Title must be between 3 and 100 letters")
+    @Pattern(regexp = "[a-zA-Z0-9 '\\-]+", message = "Title must only contain letters")
     private String title;
 
     @Column(name = "isbn")
+    @NotBlank(message = "ISBN is required")
+    @Pattern(regexp = "\\d+", message = "ISBN must be numerical")
     private String isbn;
 
     @Column(name = "copies")
+    @Min(value = 1, message = "Copies must be at least 1")
     private int copies;
 
     @Column(name = "author_id", insertable = false, updatable = false)
+    @NotNull
     private Long authorId;
 
     @ManyToOne
@@ -34,79 +51,10 @@ public class Book {
     @ManyToMany(mappedBy = "borrowedBooks")
     private Set<Member> borrowers = new HashSet<>();
 
-    public Book() {
-
-    }
-
-    public Set<Member> getBorrowers() {
-        return borrowers;
-    }
-
-    public void setBorrowers(Set<Member> borrowers) {
-        this.borrowers = borrowers;
-    }
-
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public Book(String title, String isbn, int copies) {
         this.title = title;
         this.isbn = isbn;
         this.copies = copies;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public int getCopies() {
-        return copies;
-    }
-
-    public void setCopies(int copies) {
-        this.copies = copies;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", copies=" + copies +
-                '}';
-    }
 }

@@ -6,17 +6,17 @@
     <title>Add Book</title>
 </head>
 <body>
-<div class="container">
+<main>
     <form action="#" th:action="@{/books/create}" th:object="${book}" method="post">
         <h1>Add a new book!</h1>
-        <div id="input">
-            <input type="text" required placeholder="Input book title" th:field="*{title}">
-            <br>
-            <input type="text" required placeholder="Input book isbn" th:field="*{isbn}">
-            <br>
-            <input type="number" required min="1" placeholder="Input book copies" th:field="*{copies}">
-            <br>
-        </div>
+        <input type="text" placeholder="Input book title" th:field="*{title}">
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
+        <br>
+        <input type="text" placeholder="Input book isbn" th:field="*{isbn}">
+        <div th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}" class="error"></div>
+        <br>
+        <input type="number" placeholder="Input book copies" th:field="*{copies}">
+        <div th:if="${#fields.hasErrors('copies')}" th:errors="*{copies}" class="error"></div>
         <br>
         <select id="author" name="authorId" th:field="*{authorId}" required>
             <option value="" disabled selected>Select an author</option>
@@ -25,9 +25,9 @@
                     th:text="${author.name}">
             </option>
         </select>
-        <br><br>
+        <br>
         <button type="submit">Add book</button>
     </form>
-</div>
+</main>
 </body>
 </html>

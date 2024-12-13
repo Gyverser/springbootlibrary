@@ -1,6 +1,14 @@
 package com.example.demo.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 
 import java.util.ArrayList;
@@ -10,6 +18,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "members")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class Member {
 
     @Id
@@ -18,9 +30,14 @@ public class Member {
     private long id;
 
     @Column(name = "name")
+    @Pattern(regexp = "[a-zA-Z]+\s[a-zA-Z]+", message = "Enter first and last name")
+    @NotBlank
+    @Size(min = 6, message = "Size of first and last name must be 5")
     private String name;
 
     @Column(name = "membership_number")
+    @Pattern(regexp = "M[0-9]+", message = "Membership number must start with M and have digits after")
+    @NotBlank
     private String membershipNumber;
 
     @ManyToMany()
@@ -31,44 +48,8 @@ public class Member {
     )
     private Set<Book> borrowedBooks = new HashSet<>();
 
-    public Member() {
-
-    }
-
-    public Set<Book> getBorrowedBooks() {
-        return borrowedBooks;
-    }
-
-    public void setBorrowedBooks(Set<Book> borrowedBooks) {
-        this.borrowedBooks = borrowedBooks;
-    }
-
     public Member(String name, String membershipNumber) {
         this.name = name;
-        this.membershipNumber = membershipNumber;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMembershipNumber() {
-        return membershipNumber;
-    }
-
-    public void setMembershipNumber(String membershipNumber) {
         this.membershipNumber = membershipNumber;
     }
 
@@ -80,12 +61,4 @@ public class Member {
         this.borrowedBooks.remove(book);
     }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", membershipNumber='" + membershipNumber + '\'' +
-                '}';
-    }
 }

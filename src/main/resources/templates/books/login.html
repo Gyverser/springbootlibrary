@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body>
-<h1>Login</h1>
-<a th:href="@{/oauth2/authorization/google}">Login with Google</a>
+<form th:action="@{/login}" method="post">
+    <h1>Login</h1>
+    <input type="text" placeholder="Insert Username" name="username" required/>
+    <input type="password" required placeholder="Insert Password" name="password"/>
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <br>
+    <a th:href="@{/oauth2/authorization/google}">Login with Google</a>
+    <br>
+    <button type="submit" class="btn">Log In</button>
+</form>
+<br><br>
+<div class="signup">
+    <p id="account">Don't have an account?</p><a th:href="@{/signup}" class="register">Sign Up</a>
+</div>
 </body>
 </html>

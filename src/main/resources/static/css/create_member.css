@@ -1,16 +1,11 @@
 body {
-    height:100vh;
+    height: 100vh;
     margin:0 auto;
     background-image:url("/images/hd.jpg");
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items: center;
-}
-
-h1 {
-    color:white;
-
 }
 
 form {
@@ -22,7 +17,7 @@ form {
     border: 2px solid black;
     width:350px;
     height:400px;
-
+}
 
 
 button {
@@ -39,7 +34,6 @@ div.input {
     padding: 15px 15px;
     border: 1px solid #CEA80E;
     margin: 10px 10px;
-
 }
 
 input {
@@ -62,5 +56,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+h1 {
+    color: white;
+}
 
-
+.error {
+    color:red;
+}

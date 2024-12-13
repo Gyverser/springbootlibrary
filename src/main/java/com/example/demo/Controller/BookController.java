@@ -6,9 +6,11 @@ import com.example.demo.Entity.Member;
 import com.example.demo.Service.AuthorService;
 import com.example.demo.Service.BookService;
 import com.example.demo.Service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,8 +45,17 @@ public class BookController {
     }
 
     @PostMapping("/create")
-    public String saveBook(@ModelAttribute("book") Book book, @RequestParam Long authorId) {
+    public String saveBook(@Valid @ModelAttribute("book") Book book, BindingResult result, @RequestParam Long authorId, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("authors", authorService.getAllAuthors());
+            return "books/create";
+        }
         Author author = authorService.getAuthorById(authorId);
+        if (author == null) {
+            result.rejectValue("author", "error.book", "Invalid author selected");
+            model.addAttribute("authors", authorService.getAllAuthors());
+            return "books/create";
+        }
         book.setAuthor(author);
         bookService.saveBook(book);
         return "redirect:/books";
@@ -60,7 +71,12 @@ public class BookController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateBook(@ModelAttribute("book") Book book, @RequestParam Long authorId) {
+    public String updateBook(@Valid @ModelAttribute("book") Book book, BindingResult result, @RequestParam Long authorId, Model model) {
+        if(result.hasErrors()) {
+            model.addAttribute("authors", authorService.getAllAuthors());
+            return "books/edit";
+        }
+
         Author author = authorService.getAuthorById(authorId);
         book.setAuthor(author);
         bookService.saveBook(book);

@@ -6,12 +6,14 @@
     <title>Add Author</title>
 </head>
 <body>
+<main>
 <form action="#" th:action="@{/authors/add}" th:object="${author}" method="post">
     <h1>Add Author</h1>
     <br>
     <input type="text" th:field="*{name}" placeholder="Enter Author Name">
-    <br><br>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
     <button type="submit" class="btn">Add Author</button>
 </form>
+</main>
 </body>
 </html>

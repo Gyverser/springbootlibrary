@@ -6,14 +6,18 @@
     <title>Edit Member</title>
 </head>
 <body>
+<main>
 <form action="#" th:action="@{/members/edit/{id} (id=${member.id})}" th:object="${member}" method="post">
     <h1>Edit Member</h1>
     <br>
-    <input type="text" required placeholder="Enter Member Name" th:field="*{name}">
-    <br><br>
-    <input type="text" required placeholder="Enter Membership Number" th:field="*{membershipNumber}">
-    <br><br>
+    <input type="text" placeholder="Enter Member Name" th:field="*{name}">
+    <div th:if="${#fields.hasErrors()}" th:errors="*{name}" class="error"></div>
+    <br>
+    <input type="text" placeholder="Enter Membership Number" th:field="*{membershipNumber}">
+    <div th:if="${#fields.hasErrors()}" th:errors="*{membershipNumber}" class="error"></div>
+    <br>
     <button type="submit" class="btn">Save Member</button>
 </form>
+</main>
 </body>
 </html>
